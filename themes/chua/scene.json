@@ -184,5 +184,9 @@
   "sunrays": {
     "from": 1060
   },
-  "maxTags": 8
+  "maxTags": 8,
+  "fps": 30,
+  "fill": {
+    "rows": 2
+  }
 }

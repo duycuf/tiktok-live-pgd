@@ -332,7 +332,7 @@
         "match": "contains",
         "action": "xam",
         "draw": "xam",
-        "label": "xin một quẻ xăm",
+        "label": "gieo quẻ",
         "cooldownMs": 30000
       },
       {
@@ -349,7 +349,7 @@
         ],
         "match": "contains",
         "action": "pray",
-        "label": "lễ ba lạy",
+        "label": "lễ Phật",
         "cooldownMs": 8000
       },
       {
@@ -359,7 +359,7 @@
         ],
         "match": "exact",
         "action": "pray",
-        "label": "lễ ba lạy",
+        "label": "lễ Phật",
         "cooldownMs": 8000
       },
       {
@@ -375,7 +375,7 @@
         ],
         "match": "contains",
         "action": "cau",
-        "label": "thả đèn nguyện",
+        "label": "thả đèn",
         "cooldownMs": 20000
       }
     ]
@@ -449,6 +449,11 @@
       },
       {
         "sound": "chuong-lon"
+      }
+    ],
+    "chat": [
+      {
+        "play": "nod"
       }
     ]
   },
@@ -533,10 +538,12 @@
     "nod": {
       "frames": [
         "idle",
-        "idle@0.94",
+        "idle@0.88",
+        "idle@0.8",
+        "idle@0.88",
         "idle"
       ],
-      "ms": 700
+      "ms": 1000
     },
     "xam": {
       "frames": [
@@ -609,20 +616,46 @@
       "Nguyện cầu công việc hanh thông, gia đình hạnh phúc"
     ],
     "draw": [
-      "Phật tử {ten} xin được quẻ số {so}, {loai}. {tho}. {loi}"
+      "Quẻ số {so}, {loai}. {tho}. {loi}"
     ],
     "drawAgain": [
       "Phật tử {ten} hôm nay đã xin quẻ số {so}, {loai}. Mỗi ngày một quẻ, mai hãy xin tiếp."
-    ]
+    ],
+    "join": [
+      "A Di Đà Phật, chào mừng {ten} đã vào chùa.",
+      "Chào {ten}. Gõ xin xăm để gieo quẻ đầu ngày nhé.",
+      "Phật tử {ten} vừa vào chùa. Mời {ten} thả tim gõ mõ tích phúc."
+    ],
+    "chat": [
+      "{ten} nhắn: {chat}.",
+      "Phật tử {ten} nói: {chat}."
+    ],
+    "command:cau": [
+      "Phật tử {ten} cầu nguyện: {loi}. Nguyện lời cầu được thành tựu."
+    ],
+    "command:pray": [
+      "Phật tử {ten} thành tâm lễ Phật.",
+      "A Di Đà Phật, {ten} đang lễ Phật."
+    ],
+    "cooldown": {
+      "join": 18000,
+      "chat": 10000,
+      "command:pray": 15000,
+      "command:cau": 5000
+    },
+    "delay": {
+      "draw": 2300
+    }
   },
   "periodic": {
     "everyMinutes": 3,
-    "quietSeconds": 20,
+    "quietSeconds": 0,
     "title": "THỜI KINH",
     "items": [
       "Nam mô Bổn Sư Thích Ca Mâu Ni Phật. Nguyện đem công đức này, hướng về khắp tất cả, đệ tử và chúng sanh, đều trọn thành Phật đạo.",
       "Nam mô A Di Đà Phật. Nguyện sanh Tây Phương Tịnh Độ trung, cửu phẩm liên hoa vi phụ mẫu.",
-      "Nam mô Đại Bi Quán Thế Âm Bồ Tát. Nguyện cho tất cả chúng sanh thân tâm an lạc, tai qua nạn khỏi."
+      "Nam mô Đại Bi Quán Thế Âm Bồ Tát. Nguyện cho tất cả chúng sanh thân tâm an lạc, tai qua nạn khỏi.",
+      "Quán Tự Tại Bồ Tát hành thâm Bát Nhã Ba La Mật Đa thời, chiếu kiến ngũ uẩn giai không, độ nhất thiết khổ ách."
     ]
   },
   "hud": {
@@ -631,14 +664,10 @@
       "sub": "Tâm an · vạn sự lành"
     },
     "guide": {
-      "title": "LỐI VÀO"
+      "title": "CÁCH CHƠI"
     },
     "board": {
       "title": "BẢNG VÀNG",
-      "size": 3
-    },
-    "ticker": {
-      "title": "SỔ LỄ",
       "size": 3
     },
     "tray": {
@@ -647,11 +676,10 @@
     "giftCard": {
       "verb": "kính dâng",
       "unit": "công đức",
-      "top": 1120
+      "top": 1180
     },
     "drawTop": 770,
-    "periodicTop": 790,
-    "sideTop": 400,
+    "periodicTop": 800,
     "toastTop": 1010
   },
   "colors": {
@@ -974,5 +1002,15 @@
         }
       ]
     }
+  },
+  "prompts": {
+    "everySeconds": 90,
+    "quietSeconds": 25,
+    "items": [
+      "Ai muốn xem quẻ hôm nay thì gõ xin xăm nhé.",
+      "Thả tim để gõ mõ tích phúc cho cả chùa.",
+      "Gõ cầu an kèm lời nguyện để thả một ngọn đèn sen.",
+      "Gõ lạy Phật để cùng lễ Phật nhé."
+    ]
   }
 }
