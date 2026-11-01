@@ -9,7 +9,6 @@ echo =======================================
 
 rem Bo kit (engine) nam canh repo nay. Dat bien KIT_DIR neu de cho khac.
 if not defined KIT_DIR if exist "..\tiktok-live-kit\src\server.js" set "KIT_DIR=..\tiktok-live-kit"
-if not defined KIT_DIR if exist "..\live-tiktok-pgd\src\server.js" set "KIT_DIR=..\live-tiktok-pgd"
 if not defined KIT_DIR (
   echo [LOI] Khong thay TikTok Live Kit. Clone duycuf/tiktok-live-kit vao thu muc canh day
   echo       hoac dat bien KIT_DIR tro toi no.
