@@ -26,6 +26,7 @@ Engine là [TikTok Live Kit](https://github.com/duycuf/tiktok-live-kit). Repo n�
 | `themes/chua/assets/` | Ảnh nền, nhân vật, nhạc nền (`music/`), tiếng hiệu ứng (`sfx/`) |
 | `brand/` | Ảnh đại diện kênh (hoa sen, vẽ bằng `avatar.html`) |
 | `GO-LIVE.md` | Hướng dẫn lên live từng bước, lỗi hay gặp |
+| `overlay.bat` | Mở chùa thành cửa sổ Chrome cho LIVE Studio quay (gọi `overlay.bat` của kit) |
 | `themes/chua/ASSETS.md` | Prompt tạo ảnh nền và các asset khác |
 | `themes/chua/CREDITS.md` | Nguồn và giấy phép của từng asset |
 | `themes/chua/tools/make-layout.py` | Vẽ bản phác bố cục để làm tham chiếu khi gen ảnh nền |

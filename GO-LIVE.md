@@ -47,7 +47,7 @@ Muốn người xem thấy luôn chùa trong phiên điện thoại thì quay ca
 
 1. Mở LIVE Studio, chọn khung **dọc (9:16)**. Bước thiết lập camera cứ bấm **Tiếp tục**, chùa không cần camera (vào màn hình chính thì ẩn nguồn camera đi).
 2. Chạy **`overlay.bat`**: mở chùa thành một cửa sổ dọc riêng (không bị "ngủ" khi bị che, tự phát tiếng).
-3. Studio: **Thêm nguồn → Quay màn hình cửa sổ**, chọn cửa sổ chùa (Edge, tiêu đề "Chùa ảo"). Mục **Liên kết** TikTok không cho dùng với địa chỉ máy mình.
+3. Studio: **Thêm nguồn → Quay màn hình cửa sổ**, chọn cửa sổ chùa (chrome.exe, tiêu đề "Chùa ảo"). Mục **Liên kết** TikTok không cho dùng với địa chỉ máy mình.
 4. Kéo nguồn chùa phủ kín khung dọc. Đừng thu nhỏ (minimize) cửa sổ chùa; để nó nằm sau các cửa sổ khác vẫn được.
 5. Tiếng chuông mõ, giọng đọc: Studio lấy tiếng máy tính trong phần cài đặt âm thanh. Bấm thử một nút hiệu ứng ở bảng điều khiển để nghe.
 6. Các mục **Tiện ích** của Studio (mục tiêu, bảng xếp hạng…) không cần thêm, chùa đã có sẵn và thêm vào sẽ chồng lên.

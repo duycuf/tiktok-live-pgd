@@ -3,8 +3,8 @@
 | Asset | Nguồn | Giấy phép |
 |---|---|---|
 | `assets/bg-key.jpg` | Tự gen bằng GPT (anh Duy) | của anh Duy |
-| `assets/chars/devotee.png` (Phật tử, 32 khung) | Anh Duy gen bằng Google Flow theo `FLOW-BRIEF.md`, cắt bằng `tools/cut-sheet.py --auto` | của anh Duy |
-| `assets/fx/halo.png`, `rays.png`, `sparkle.png` | Anh Duy gen bằng Google Flow, chuyển nền đen thành trong suốt bằng `tools/black-to-alpha.py` | của anh Duy |
+| `assets/chars/devotee.png` (Phật tử, 32 khung) | Anh Duy gen bằng Google Flow theo `FLOW-BRIEF.md`, cắt bằng `pnpm assets:cut --auto` của kit | của anh Duy |
+| `assets/fx/halo.png`, `rays.png`, `sparkle.png` | Anh Duy gen bằng Google Flow, chuyển nền đen thành trong suốt bằng `pnpm assets:alpha` của kit | của anh Duy |
 | `assets/cdo/*` (icon lễ phẩm, sen bay, cánh sen; nhân vật cũ không còn dùng) | [kentjuno/chanh-dien-online](https://github.com/kentjuno/chanh-dien-online), tạo bằng Google Flow | MIT, © 2026 Kent Juno (xem `assets/cdo/LICENSE`) |
 | `assets/music/music1.mp3`, `music2.mp3` | [kentjuno/chanh-dien-online](https://github.com/kentjuno/chanh-dien-online), tạo bằng Gemini | MIT, © 2026 Kent Juno |
 | `assets/sfx/mo.mp3` (mõ) | Freesound [Mokugyo.wav](https://freesound.org/people/jonopodmore/sounds/607215/), jonopodmore | CC0 |

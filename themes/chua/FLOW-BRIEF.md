@@ -28,6 +28,6 @@ FINAL CHECK: no number or letter anywhere; exactly 6 columns × 5 rows of the sa
 
 ## Sau khi tải về
 
-Em chạy `tools/cut-sheet.py`: tách nền xanh, bỏ chữ số lẻ nếu có, cắt 30 khung, rồi khai báo nhân vật cùng các động tác lạy, dâng hương, xin xăm, đi vào / đi ra / đi ngang trong `theme.json`.
+Em chạy công cụ cắt tờ của kit (`pnpm assets:cut`): tách nền xanh, bỏ chữ số lẻ nếu có, cắt 30 khung, rồi khai báo nhân vật cùng các động tác lạy, dâng hương, xin xăm, đi vào / đi ra / đi ngang trong `theme.json`.
 
 Nếu tác nhân vẽ lệch lưới, bảo nó gen lại, hoặc tách thành 2 ảnh: hàng 1–3 (đi) và hàng 4–5 (tại chỗ), em ghép lại.

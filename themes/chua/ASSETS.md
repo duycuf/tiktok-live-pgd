@@ -63,7 +63,7 @@ Turn the first image (a flat layout sketch) into a photorealistic photograph of 
 
 ## 1. Phật tử: một tờ hoạt hình 16:9 cho mỗi người (quan trọng nhất)
 
-Giống tờ hoạt hình làm phim: **một ảnh 16:9 chứa đủ mọi động tác của một người**, chia lưới **6 cột × 5 hàng = 30 khung**. Mỗi hàng là một động tác, đọc từ trái sang phải là các khung nối tiếp nhau. Công cụ `tools/cut-sheet.py` tách nền, cắt 30 khung và xếp thành tờ cho code.
+Giống tờ hoạt hình làm phim: **một ảnh 16:9 chứa đủ mọi động tác của một người**, chia lưới **6 cột × 5 hàng = 30 khung**. Mỗi hàng là một động tác, đọc từ trái sang phải là các khung nối tiếp nhau. Công cụ cắt tờ của kit (`pnpm assets:cut`) tách nền, cắt 30 khung và xếp thành tờ cho code.
 
 Danh sách động tác lấy theo những gì code chùa đang dùng: vào chùa đi lên lối giữa rồi rẽ về chỗ, ngồi chờ, lạy, lên bàn thờ dâng hương, xin xăm, về chỗ, rời chùa.
 
@@ -107,10 +107,10 @@ Nhân vật (thay vào *[nhân vật]*), ưu tiên 1, 2, 5 trước. Code tự l
 
 Sư, ni, chú tiểu: dùng cùng prompt, đổi trang phục thành *"a Vietnamese Buddhist monk with a shaved head in a brown robe"* (ni: *"a Vietnamese Buddhist nun with a shaved head in a grey robe"*, tiểu: *"a young novice boy with a shaved head in a light brown robe"*).
 
-**Sau khi gen** (em làm, hoặc tự chạy trong thư mục theme):
+**Sau khi gen** (em làm, hoặc tự chạy trong thư mục kit `..	iktok-live-kit`):
 
 ```
-uv run --no-project --with pillow --with numpy python tools/cut-sheet.py assets/raw/devotee-1.png assets/chars/devotee-1.png
+pnpm assets:cut ../tiktok-live-pgd/themes/chua/assets/raw/devotee-1.png ../tiktok-live-pgd/themes/chua/assets/chars/devotee-1.png --auto
 ```
 
 Công cụ in sẵn đoạn khai báo nhân vật cho `theme.json` (`walkUp`, `walkDown`, `walkSide`, `poses`) và ghi `devotee-1-preview.png` có đánh số khung để soát. Khi cả bộ đã thay, động tác trong `"animations"` đổi sang khung thật:
@@ -181,5 +181,5 @@ Dùng **file thu âm thật** trong `assets/sfx/`: `chuong-lon.mp3`, `chuong.mp3
 ## Công cụ
 
 - `tools/make-layout.py`: vẽ bản phác bố cục chánh điện (nếu cần gen lại nền).
-- `tools/cut-sheet.py`: cắt tờ hoạt hình nhân vật (lưới 6 × 5, nền xanh lá) thành tờ khung cho code, kèm ảnh soát có đánh số.
+- `pnpm assets:cut` (trong kit): cắt tờ hoạt hình nhân vật (lưới 6 × 5, nền xanh lá) thành tờ khung cho code, kèm ảnh soát có đánh số.
 - Ảnh tham chiếu: `assets/ref/`.
