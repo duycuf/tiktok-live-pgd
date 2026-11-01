@@ -71,7 +71,7 @@ Mẹo: chọn **Tự động** và gõ sẵn tên kênh. Có TikFinity thì kit 
 ## 4. Thử trước khi lên sóng (khi chưa live)
 
 - Ở bảng điều khiển bấm các nút **thử hiệu ứng** (dâng hương, lễ bái, dâng sen, đại lễ) và **Đọc thử** giọng.
-- Chế độ **Giả lập** cho người ảo vào chùa để xem cảnh đông người. Nhớ **tắt giả lập** và bấm **Làm mới phiên** trước khi lên sóng thật.
+- Bật **Tự chạy** trong Test Lab cho người ảo vào chùa để xem cảnh đông người. Nhớ **tắt đi** và bấm **Phiên mới** trước khi lên sóng thật.
 - Muốn xem vùng TikTok che: mở `http://localhost:3939/overlay?safe`.
 
 ## 5. Lên sóng
