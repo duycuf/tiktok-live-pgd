@@ -2,7 +2,7 @@
 
 Chỉ một nhân vật Phật tử dùng chung cho cả đám đông. Code tự lật trái phải theo từng người.
 
-Cách dùng: mở tác nhân trong Flow, **kéo `assets/bg-key.jpg` vào làm ảnh tham chiếu màu**, dán nguyên khối dưới đây. Nếu Flow cho chọn, bật **phóng to 2K hoặc 4K** (ảnh mặc định 1376 × 768 thì mỗi người chỉ cao khoảng 130px, lên live hơi mờ). Tải về lưu `assets/raw/devotee.png` rồi báo em.
+Cách dùng: mở tác nhân trong Flow, **kéo `assets/bg-key.jpg` vào làm ảnh tham chiếu màu**, dán nguyên khối dưới đây. Nếu Flow cho chọn, bật **phóng to 2K hoặc 4K** (ảnh mặc định 1376 × 768 thì mỗi người chỉ cao khoảng 130px, lên live hơi mờ). Tải về lưu `assets/raw/devotee.png`.
 
 ```
 Create ONE 16:9 animation model sheet (sprite sheet) of a single character for a 2.5D live-stream game set in the Vietnamese Buddhist temple hall of the attached reference image. Use the reference only for colours and lighting.
@@ -28,6 +28,6 @@ FINAL CHECK: no number or letter anywhere; exactly 6 columns × 5 rows of the sa
 
 ## Sau khi tải về
 
-Em chạy công cụ cắt tờ của kit (`pnpm assets:cut`): tách nền xanh, bỏ chữ số lẻ nếu có, cắt 30 khung, rồi khai báo nhân vật cùng các động tác lạy, dâng hương, xin xăm, đi vào / đi ra / đi ngang trong `theme.json`.
+Chạy công cụ cắt tờ của kit (`pnpm assets:cut ... --auto`, cách dùng ở `docs/ASSETS-GUIDE.vi.md` của kit): tách nền xanh, bỏ chữ số lẻ nếu có, cắt 30 khung, rồi khai báo nhân vật cùng các động tác lạy, dâng hương, xin xăm, đi vào / đi ra / đi ngang trong `theme.json`.
 
-Nếu tác nhân vẽ lệch lưới, bảo nó gen lại, hoặc tách thành 2 ảnh: hàng 1–3 (đi) và hàng 4–5 (tại chỗ), em ghép lại.
+Nếu tác nhân vẽ lệch lưới, bảo nó gen lại, hoặc tách thành 2 ảnh: hàng 1–3 (đi) và hàng 4–5 (tại chỗ), rồi ghép lại.

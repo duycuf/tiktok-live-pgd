@@ -14,10 +14,10 @@ Lớp 1  Nền chánh điện bg-key.jpg                              ← đã c
 ## Quy tắc chung
 
 - Gen bằng **GPT (ChatGPT / GPT Image)**, chọn chất lượng cao.
-- **Người và đạo cụ**: xin rõ *"transparent background PNG"*. Nếu GPT trả nền trắng thì cũng được, em tách.
-- **Hiệu ứng ánh sáng, khói**: nền **đen tuyệt đối**. Em chuyển phần đen thành trong suốt, giữ độ mờ tự nhiên của khói.
+- **Người và đạo cụ**: xin rõ *"transparent background PNG"*. Nếu GPT trả nền trắng thì tách nền sau.
+- **Hiệu ứng ánh sáng, khói**: nền **đen tuyệt đối**. `pnpm assets:alpha` của kit chuyển phần đen thành trong suốt, giữ độ mờ tự nhiên của khói.
 - Mọi ảnh đều **cùng vibe với nền**. Kéo `assets/bg-key.jpg` vào làm ảnh tham chiếu và nói *"match the lighting and colors of this temple image"*.
-- Gen xong thả vào `themes/chua/assets/raw/`, đặt đúng tên ở cột **File**. Em cắt, tách nền, đặt vào code.
+- Gen xong thả vào `themes/chua/assets/raw/`, đặt đúng tên ở cột **File**, rồi cắt, tách nền bằng công cụ của kit và khai báo trong `theme.json`.
 
 Khối **STYLE** dán vào cuối mọi prompt người và đạo cụ:
 
@@ -48,7 +48,7 @@ From 57% to 64%: a low wooden platform step across the width with two rows of ro
 Bottom 36%: polished warm teak wooden floor, completely empty, with a red patterned carpet runner from the bottom edge straight up the center to the platform.
 No people anywhere.
 ```
-→ dán **STYLE** vào cuối. Gen xong lưu `raw/bg-key.png`, em đo lại toạ độ.
+→ dán **STYLE** vào cuối. Gen xong lưu `raw/bg-key.png`, rồi đo lại toạ độ trong `scene.json` (mở `/overlay?scene`).
 
 **Cách chắc ăn nhất:** đưa GPT **bản phác bố cục** `assets/ref/layout-guide.png` (code vẽ, sạch, không chữ) kèm ảnh nền bản 1 `assets/bg-key.jpg` làm tham chiếu màu, rồi dán:
 
@@ -79,7 +79,7 @@ Lưu ý khi gen:
 - **Nền xanh lá trơn** (công cụ tự tách). Áo lam xám và tóc đen không trùng màu xanh nên tách sạch.
 - **Không vẽ bồ đoàn, sàn, bóng đổ** dưới người: code tự vẽ nệm ở từng chỗ ngồi, lúc đứng dậy đi thì nệm vẫn ở lại.
 - Gen **độ phân giải cao nhất** (2K / 4K). 16:9 thì dùng Gemini / Flow; GPT chỉ có 3:2 cũng được, công cụ chỉ cần đúng lưới 6 × 5.
-- AI hay vẽ lệch lưới khi nhiều khung. Nếu hỏng, gen 2 ảnh: hàng 1–3 (đi) và hàng 4–5 (tại chỗ), em ghép lại.
+- AI hay vẽ lệch lưới khi nhiều khung. Nếu hỏng, gen 2 ảnh: hàng 1–3 (đi) và hàng 4–5 (tại chỗ), rồi ghép lại.
 - Gen người đầu tiên xong, **trong cùng cuộc chat** gõ *"Same sheet, same layout and style, but the person is [nhân vật khác]"* để cả bộ cùng một nét.
 
 → `raw/devotee-<n>.png`
@@ -107,7 +107,7 @@ Nhân vật (thay vào *[nhân vật]*), ưu tiên 1, 2, 5 trước. Code tự l
 
 Sư, ni, chú tiểu: dùng cùng prompt, đổi trang phục thành *"a Vietnamese Buddhist monk with a shaved head in a brown robe"* (ni: *"a Vietnamese Buddhist nun with a shaved head in a grey robe"*, tiểu: *"a young novice boy with a shaved head in a light brown robe"*).
 
-**Sau khi gen** (em làm, hoặc tự chạy trong thư mục kit `..	iktok-live-kit`):
+**Sau khi gen**, chạy trong thư mục kit `../tiktok-live-kit`:
 
 ```
 pnpm assets:cut ../tiktok-live-pgd/themes/chua/assets/raw/devotee-1.png ../tiktok-live-pgd/themes/chua/assets/chars/devotee-1.png --auto
@@ -125,7 +125,7 @@ Công cụ in sẵn đoạn khai báo nhân vật cho `theme.json` (`walkUp`, `w
 
 ---
 
-## 2. Hiệu ứng (nền đen, em chuyển thành trong suốt)
+## 2. Hiệu ứng (nền đen, chuyển thành trong suốt bằng `pnpm assets:alpha`)
 
 Thêm vào cuối mỗi prompt: `On a pure black background, nothing else in the image, no text.`
 
@@ -169,7 +169,7 @@ Dán **STYLE** vào cuối.
 
 ## Âm thanh
 
-Dùng **file thu âm thật** trong `assets/sfx/`: `chuong-lon.mp3`, `chuong.mp3`, `mo.mp3`, `lac-xam.mp3`, `sen.mp3` (tuỳ chọn). Nhạc nền, tiếng tụng: `.mp3` trong `assets/music/`. Chỉ dùng file miễn phí bản quyền hoặc file anh có quyền dùng.
+Dùng **file thu âm thật** trong `assets/sfx/`: `chuong-lon.mp3`, `chuong.mp3`, `mo.mp3`, `sen.mp3`. Nhạc nền, tiếng tụng: `.mp3` trong `assets/music/`. Chỉ dùng file miễn phí bản quyền hoặc file bạn có quyền dùng, ghi nguồn vào `CREDITS.md`.
 
 ## Thứ tự gen gợi ý
 

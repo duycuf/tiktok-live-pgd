@@ -1,5 +1,7 @@
 # Chùa ảo · TikTok LIVE
 
+> **English:** a virtual Buddhist temple for TikTok LIVE, built as a theme for [TikTok Live Kit](https://github.com/duycuf/tiktok-live-kit). Viewers become devotees in the temple hall; gifts trigger incense offerings, bows and lotus offerings, with a Vietnamese voice. Clone the kit next to this repo and run `run.bat`. Content and docs are in Vietnamese. MIT licensed.
+
 Repo để live kênh chùa ảo: người xem thành Phật tử trong chánh điện, tặng quà để dâng hương, lễ Phật, dâng hoa sen.
 Engine là [TikTok Live Kit](https://github.com/duycuf/tiktok-live-kit). Repo này chỉ giữ phần riêng của chùa.
 
@@ -31,4 +33,8 @@ Engine là [TikTok Live Kit](https://github.com/duycuf/tiktok-live-kit). Repo n�
 | `themes/chua/CREDITS.md` | Nguồn và giấy phép của từng asset |
 | `themes/chua/tools/make-layout.py` | Vẽ bản phác bố cục để làm tham chiếu khi gen ảnh nền |
 
-Sửa cảnh, luật, giọng đọc: xem `docs/THEME.md` trong kit.
+Sửa cảnh, luật, giọng đọc: xem `docs/THEME.vi.md` trong kit.
+
+## Giấy phép
+
+[MIT](LICENSE): dùng, sửa, làm kênh riêng thoải mái, chỉ cần giữ dòng bản quyền. Asset lấy từ nơi khác giữ giấy phép gốc (MIT, CC0), nguồn từng file ở [CREDITS.md](themes/chua/CREDITS.md). Ảnh và nhạc tạo bằng AI: tự kiểm tra điều khoản của công cụ đó nếu dùng thương mại.
