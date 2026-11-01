@@ -1,8 +1,8 @@
-# Chùa ảo · TikTok LIVE
+# Đi chùa online · TikTok LIVE
 
-> **English:** a virtual Buddhist temple for TikTok LIVE, built as a theme for [TikTok Live Kit](https://github.com/duycuf/tiktok-live-kit). Viewers become devotees in the temple hall; gifts trigger incense offerings, bows and lotus offerings, with a Vietnamese voice. Clone the kit next to this repo and run `run.bat`. Content and docs are in Vietnamese. MIT licensed.
+> **English:** an online temple visit for TikTok LIVE, built as a theme for [TikTok Live Kit](https://github.com/duycuf/tiktok-live-kit). Viewers walk into a peaceful temple hall, light incense and send good wishes, with a Vietnamese voice. Clone the kit next to this repo and run `run.bat`. Content and docs are in Vietnamese. MIT licensed.
 
-Repo để live kênh chùa ảo: người xem thành Phật tử trong chánh điện, tặng quà để dâng hương, lễ Phật, dâng hoa sen.
+Không gian đi chùa online trên TikTok LIVE: người xem bước vào chánh điện, thắp nén hương, gửi lời cầu an cho gia đình.
 Engine là [TikTok Live Kit](https://github.com/duycuf/tiktok-live-kit). Repo này chỉ giữ phần riêng của chùa.
 
 ## Chạy
