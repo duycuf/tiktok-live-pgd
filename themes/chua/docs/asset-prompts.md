@@ -1,6 +1,6 @@
-# Asset chùa ảo: prompt gen bằng GPT (ảnh nét)
+# Prompt tạo asset cho theme chùa
 
-> Nhân vật Phật tử (một người dùng chung cho cả đám đông): dùng brief cho tác nhân Flow trong [FLOW-BRIEF.md](FLOW-BRIEF.md). File này giữ prompt lẻ các món khác, chỉ gen khi cần.
+> Nhân vật Phật tử (một người dùng chung cho cả đám đông): dùng brief cho tác nhân Flow trong [character-sheet-prompt.md](character-sheet-prompt.md). File này giữ prompt lẻ các món khác, chỉ gen khi cần.
 
 Nền chánh điện đã có: `assets/bg-key.jpg` (gen bằng GPT). **Không làm video nền**: Flow làm mờ ảnh, code tự làm cảnh "sống" (khói, nến, ánh sáng, người di chuyển).
 

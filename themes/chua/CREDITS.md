@@ -3,9 +3,8 @@
 | Asset | Nguồn | Giấy phép |
 |---|---|---|
 | `assets/bg-key.jpg` | duycuf gen bằng GPT | MIT, © 2026 duycuf |
-| `assets/chars/devotee.png` (Phật tử, 32 khung) | duycuf gen bằng Google Flow theo `FLOW-BRIEF.md`, cắt bằng `pnpm assets:cut --auto` của kit | MIT, © 2026 duycuf |
+| `assets/chars/devotee.png` (Phật tử, 32 khung) | duycuf gen bằng Google Flow theo `docs/character-sheet-prompt.md`, cắt bằng `pnpm assets:cut --auto` của kit | MIT, © 2026 duycuf |
 | `assets/fx/halo.png`, `rays.png`, `sparkle.png` | duycuf gen bằng Google Flow, chuyển nền đen thành trong suốt bằng `pnpm assets:alpha` của kit | MIT, © 2026 duycuf |
-| `assets/ref/ref-vibe.png`, `ref-flow-3-ban.png` (ảnh tham chiếu, không dùng trên live) | duycuf gen bằng Google Flow | MIT, © 2026 duycuf |
 | `assets/ref/layout-guide.png` | vẽ bằng `tools/make-layout.py` | MIT, © 2026 duycuf |
 | `brand/avatar.png`, `avatar-text.png` (ảnh đại diện kênh) | vẽ bằng `brand/avatar.html` | MIT, © 2026 duycuf |
 | `assets/cdo/*` (icon lễ phẩm, sen bay, cánh sen; nhân vật cũ không còn dùng) | [kentjuno/chanh-dien-online](https://github.com/kentjuno/chanh-dien-online), tạo bằng Google Flow | MIT, © 2026 Kent Juno (xem `assets/cdo/LICENSE`) |

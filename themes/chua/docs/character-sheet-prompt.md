@@ -1,4 +1,4 @@
-# Brief cho tác nhân Flow: tờ hoạt hình Phật tử (kiểu vẽ 2D)
+# Prompt tờ hoạt hình nhân vật Phật tử (Google Flow, 2D)
 
 Chỉ một nhân vật Phật tử dùng chung cho cả đám đông. Code tự lật trái phải theo từng người.
 
