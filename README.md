@@ -10,7 +10,7 @@
 An online temple visit for TikTok LIVE: viewers walk into a peaceful temple hall, light incense and send wishes for their families, with a Vietnamese voice reading along.
 The engine is [TikTok Live Kit](https://github.com/duycuf/tiktok-live-kit). This repo holds only the temple theme.
 
-> The on-screen content, voice lines and detailed guides are in Vietnamese.
+> The on-screen content and voice lines are in Vietnamese.
 
 ## Run
 
@@ -33,11 +33,9 @@ The engine is [TikTok Live Kit](https://github.com/duycuf/tiktok-live-kit). This
 | `themes/chua/theme.json` | Gift actions, titles, goals, voice lines, periodic content, sound effects |
 | `themes/chua/scene.json` | Temple hall layout measured on the background: horizon, perspective, floor, aisle, 16 honour seats, incense burner, the first two rows always filled |
 | `themes/chua/assets/` | Background, characters, background music (`music/`), sound effects (`sfx/`) |
-| `themes/chua/docs/` | Prompts used to create the background, the character sheet and other assets |
 | `themes/chua/CREDITS.md` | Source and licence of every asset |
-| `themes/chua/tools/make-layout.py` | Draws a layout sketch used as a reference when generating the background |
 | `brand/` | Channel avatar (a lotus, drawn with `avatar.html`) |
-| `GO-LIVE.md` | Step-by-step go-live guide and common problems |
+| `GO-LIVE.md` | Step-by-step go-live guide and common problems ([Vietnamese](GO-LIVE.vi.md)) |
 | `overlay.bat` | Opens the temple as a Chrome window for LIVE Studio to capture (calls the kit's `overlay.bat`) |
 | `AGENTS.md` | Instructions for AI coding agents working in this repo |
 

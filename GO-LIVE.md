@@ -1,122 +1,126 @@
-# Live đi chùa online từng bước
+**English** | [Tiếng Việt](GO-LIVE.vi.md)
 
-Ba thứ chạy cùng lúc khi live:
+# Going live with the online temple, step by step
+
+Three things run at the same time during a live:
 
 ```
-TikTok LIVE ──(quà, tim, chat)──> TikFinity Desktop ──ws://127.0.0.1:21213──> Chùa (run.bat, cổng 3939)
-                                   (hoặc kết nối trực tiếp, không cần TikFinity)          │
-LIVE Studio / OBS <───────────── hình overlay http://localhost:3939/overlay ─────────────┘
+TikTok LIVE ──(gifts, likes, chat)──> TikFinity Desktop ──ws://127.0.0.1:21213──> Temple (run.bat, port 3939)
+                                      (or the direct connection, no TikFinity)              │
+LIVE Studio / OBS <───────────── overlay picture http://localhost:3939/overlay ─────────────┘
 ```
 
-## Chọn cách phát
+The control panel and the overlay are in Vietnamese. Button and tab names are given below as they appear on screen, with the English in brackets.
 
-Trước khi live, xác định: **dùng gì để đưa hình chùa lên sóng**, và **tài khoản đang được phép gì**.
+## Choose a route
 
-| Cách | Cần | Mỗi lần live bật | Làm theo |
+Before going live, decide **what puts the temple picture on air** and **what the account is allowed to do**.
+
+| Route | Needs | Start each live | Follow |
 |---|---|---|---|
-| **A. LIVE Studio quay cửa sổ** | Tài khoản dùng được LIVE Studio | `run.bat` + `overlay.bat` + Studio | Bước 2A |
-| **B. OBS → Virtual Camera → LIVE Studio** (mượt nhất, nên dùng) | Tài khoản dùng được LIVE Studio, có OBS | `run.bat` + OBS + Studio | Bước 2B |
-| **C. OBS phát bằng khoá phát** | Tài khoản có khoá phát (stream key) | `run.bat` + OBS | Bước 2B, phần C |
+| **A. LIVE Studio captures a window** | An account that can use LIVE Studio | `run.bat` + `overlay.bat` + Studio | Step 2A |
+| **B. OBS → Virtual Camera → LIVE Studio** (smoothest, recommended) | An account that can use LIVE Studio, and OBS | `run.bat` + OBS + Studio | Step 2B |
+| **C. OBS streams with a stream key** | An account with a stream key | `run.bat` + OBS | Step 2B, part C |
 
-Tài khoản chưa dùng được Studio (báo "Không có quyền truy cập") thì làm "Phiên mở khoá" bên dưới trước. Cách nào cũng phải để `run.bat` chạy suốt buổi live.
+If the account cannot use Studio yet (it shows "Không có quyền truy cập", *No access*), do the unlock session below first. In every route `run.bat` must keep running for the whole live.
 
-## 0. Cần có trước
+## 0. What you need
 
-| Thứ | Ghi chú |
+| Item | Notes |
 |---|---|
-| Tài khoản TikTok **có quyền LIVE Studio** | LIVE Studio góc trên bên phải phải **không còn** chữ "Không có quyền truy cập". Tài khoản mới: **phát LIVE bằng điện thoại một phiên khoảng 25 phút** thì TikTok mới mở quyền Studio (xem mục "Phiên mở khoá" bên dưới) |
-| TikTok LIVE Studio | Đã cài (cách A, B) |
-| OBS Studio | Cách B, C: tải ở obsproject.com |
-| TikFinity Desktop (khuyên dùng) | Tải bản Windows ở trang chủ TikFinity (tikfinity.zerody.one). Ổn định hơn kết nối trực tiếp |
-| Kit `..\tiktok-live-kit` | Đã có, `run.bat` tự tìm |
+| A TikTok account **with LIVE Studio access** | The top-right corner of LIVE Studio must **no longer** show "Không có quyền truy cập" (*No access*). New accounts: **go live from the phone once for about 25 minutes**, then TikTok unlocks Studio (see "Unlock session" below) |
+| TikTok LIVE Studio | Installed (routes A and B) |
+| OBS Studio | Routes B and C: download from obsproject.com |
+| TikFinity Desktop (recommended) | Windows version from the TikFinity website (tikfinity.zerody.one). More stable than the direct connection |
+| The kit at `..\tiktok-live-kit` | Already cloned; `run.bat` finds it |
 
-## Phiên mở khoá: live điện thoại 25 phút (làm một lần cho tài khoản mới)
+## Unlock session: a 25-minute phone live (once, for a new account)
 
-Tranh thủ phiên này để thử phần **nối dữ liệu**: quà, tim, chat của buổi live điện thoại vẫn chạy vào chùa trên máy tính.
+Use this session to test the **data link**: gifts, likes and chat from the phone live still reach the temple on the computer.
 
-1. Máy tính: chạy `run.bat` (bước 1), mở overlay `http://localhost:3939/overlay` để xem chùa phản ứng.
-2. Điện thoại: mở TikTok, bấm **+** → **LIVE**, đặt tiêu đề rồi **Phát trực tiếp**. Giữ đủ khoảng 25 phút.
-3. Máy tính: nối dữ liệu như bước 3 (TikFinity đăng nhập đúng tài khoản kênh, hoặc **Trực tiếp** với tên kênh).
-4. Nhờ người quen vào chat «xin xăm», «lạy Phật», thả tim, tặng quà nhỏ: overlay trên máy tính phải có người vào chùa, lạy, gieo quẻ, dâng hương.
-5. Hết phiên, mở lại LIVE Studio: chữ "Không có quyền truy cập" mất là dùng được Studio.
+1. Computer: run `run.bat` (step 1) and open the overlay `http://localhost:3939/overlay` to watch the temple react.
+2. Phone: open TikTok, tap **+** → **LIVE**, set a title, then **Go LIVE**. Stay on for about 25 minutes.
+3. Computer: connect the data as in step 3 (TikFinity signed in to the channel's account, or **Trực tiếp** (*Direct*) with the channel name).
+4. Ask a friend to type «xin xăm» (*draw a fortune*) and «lạy Phật» (*bow to the Buddha*) in chat, send likes and a small gift: on the computer, people should walk into the temple, bow, draw fortunes and offer incense.
+5. After the session, reopen LIVE Studio: once "Không có quyền truy cập" is gone, Studio is ready.
 
-Muốn người xem thấy luôn chùa trong phiên điện thoại thì quay camera điện thoại vào màn hình máy tính đang mở overlay (tạm thời, hình không đẹp bằng Studio).
+To let viewers see the temple during the phone session, point the phone camera at the computer screen showing the overlay (a stopgap; the picture is not as good as Studio).
 
-### Điện thoại phát màn hình chùa (máy tính cắm mạng dây, điện thoại không có 4G)
+### Phone streams the temple screen (computer on wired network, phone without mobile data)
 
-1. Máy tính: **Cài đặt → Mạng & Internet → Điểm phát sóng di động**, chia sẻ từ **Ethernet** qua **Wi-Fi**, bật lên. Điện thoại vào Wi-Fi đó (tắt chia sẻ kết nối qua USB nếu đang bật).
-2. `config.json` thêm địa chỉ của điểm phát sóng vào `host`: `"host": "127.0.0.1,192.168.137.1"` (chỉ mở cho mạng phát từ máy, mạng dây vẫn đóng). Chạy lại `run.bat`.
-3. Điện thoại mở Chrome vào `http://192.168.137.1:3939/overlay`, chạm một lần để bật tiếng. Windows hỏi cho Node.js dùng mạng thì cho phép.
-4. TikTok: **+ → LIVE → phát màn hình / chơi game trên điện thoại** → phát, rồi chuyển sang Chrome. Bảng điều khiển trên máy tính bấm **Kết nối** (Trực tiếp, tên kênh).
-5. Live xong: tắt điểm phát sóng, xoá địa chỉ `192.168.137.1` khỏi `host` nếu không dùng nữa.
+1. Computer: **Settings → Network & internet → Mobile hotspot**, share from **Ethernet** over **Wi-Fi**, turn it on. Join that Wi-Fi from the phone (turn off USB tethering if it is on).
+2. In `config.json`, add the hotspot address to `host`: `"host": "127.0.0.1,192.168.137.1"` (opens only the hotspot network; the wired network stays closed). Restart `run.bat`.
+3. On the phone, open Chrome at `http://192.168.137.1:3939/overlay` and tap once to enable sound. If Windows asks whether Node.js may use the network, allow it.
+4. TikTok: **+ → LIVE → Mobile gaming / screen share** → go live, then switch to Chrome. In the control panel on the computer, click **Kết nối** (*Connect*) with **Trực tiếp** (*Direct*) and the channel name.
+5. After the live: turn off the hotspot and remove `192.168.137.1` from `host` if you no longer need it.
 
-## 1. Mở chùa
+## 1. Open the temple
 
-1. Chạy `run.bat` trong thư mục này.
-2. Một cửa sổ đen tên **"Chua ao - TikTok Live"** hiện ra: đó là server, **để nguyên, đừng tắt** suốt buổi live.
-3. Trình duyệt tự mở **bảng điều khiển** `http://localhost:3939`.
+1. Run `run.bat` in this folder.
+2. A black window titled **"Chua ao - TikTok Live"** appears: that is the server. **Leave it open** for the whole live.
+3. The browser opens the **control panel** at `http://localhost:3939`.
 
-## 2A. Đưa chùa vào LIVE Studio (quay cửa sổ)
+## 2A. Put the temple into LIVE Studio (window capture)
 
-1. Mở LIVE Studio, chọn khung **dọc (9:16)**. Bước thiết lập camera cứ bấm **Tiếp tục**, chùa không cần camera (vào màn hình chính thì ẩn nguồn camera đi).
-2. Chạy **`overlay.bat`**: mở chùa thành một cửa sổ dọc riêng (không bị "ngủ" khi bị che, tự phát tiếng).
-3. Studio: **Thêm nguồn → Quay màn hình cửa sổ**, chọn cửa sổ chùa (chrome.exe, tiêu đề "Chùa ảo"). Mục **Liên kết** TikTok không cho dùng với địa chỉ máy mình.
-4. Kéo nguồn chùa phủ kín khung dọc. Đừng thu nhỏ (minimize) cửa sổ chùa; để nó nằm sau các cửa sổ khác vẫn được.
-5. Tiếng chuông mõ, giọng đọc: Studio lấy tiếng máy tính trong phần cài đặt âm thanh. Bấm thử một nút hiệu ứng ở bảng điều khiển để nghe.
-6. Các mục **Tiện ích** của Studio (mục tiêu, bảng xếp hạng…) không cần thêm, chùa đã có sẵn và thêm vào sẽ chồng lên.
+1. Open LIVE Studio and choose the **portrait (9:16)** frame. In the camera setup step just click **Continue**; the temple needs no camera (hide the camera source once you reach the main screen).
+2. Run **`overlay.bat`**: it opens the temple in its own portrait window (it does not "sleep" when covered, and plays sound on its own).
+3. Studio: **Add source → Window capture**, pick the temple window (chrome.exe, titled "Chùa ảo"). TikTok's **Link** source does not accept local addresses.
+4. Stretch the temple source to fill the portrait frame. Do not minimise the temple window; leaving it behind other windows is fine.
+5. Bells, wooden fish and voice: Studio picks up computer audio in its audio settings. Click an effect button in the control panel to test.
+6. Studio's **widgets** (goals, leaderboards…) are not needed: the temple already has them, and adding them would overlap.
 
-## 2B. Đưa chùa vào OBS (cài một lần, OBS tự nhớ)
+## 2B. Put the temple into OBS (set up once, OBS remembers)
 
-OBS tự vẽ chùa bằng nguồn Browser nên hình mượt hơn quay cửa sổ, và **không cần chạy `overlay.bat`**.
+OBS draws the temple itself through a Browser source, so the picture is smoother than window capture, and **`overlay.bat` is not needed**.
 
-1. OBS → **Settings → Video**: độ phân giải gốc và đầu ra **1080 × 1920**, **30 FPS**.
-2. **Sources → + → Browser**: URL `http://localhost:3939/overlay`, rộng **1080**, cao **1920**, tick **Control audio via OBS**. Chuột phải nguồn → **Interact**, bấm vào chùa một lần để bật tiếng.
-3. Tiếng chuông mõ, giọng đọc: chuột phải nguồn → **Advanced Audio Properties** → cột Audio Monitoring chọn **Monitor and Output**.
-4. **Cách B, qua LIVE Studio**: OBS bấm **Start Virtual Camera**. Mở LIVE Studio, khung **dọc (9:16)**, **Thêm nguồn → Camera → OBS Virtual Camera**, kéo phủ kín khung. Camera ảo chỉ mang hình, tiếng đi qua loa máy tính: bật thu âm thanh máy tính trong cài đặt âm thanh của Studio.
-5. **Cách C, có khoá phát**: OBS → **Settings → Stream → Custom**, dán địa chỉ máy chủ và khoá phát TikTok cấp, rồi **Start Streaming**. Không cần Studio, tiếng đi thẳng qua OBS (bước 3 không bắt buộc).
-6. Các mục **Tiện ích** của Studio không cần thêm, chùa đã có sẵn.
+1. OBS → **Settings → Video**: base and output resolution **1080 × 1920**, **30 FPS**.
+2. **Sources → + → Browser**: URL `http://localhost:3939/overlay`, width **1080**, height **1920**, tick **Control audio via OBS**. Right-click the source → **Interact**, click the temple once to enable sound.
+3. Bells, wooden fish and voice: right-click the source → **Advanced Audio Properties** → set Audio Monitoring to **Monitor and Output**.
+4. **Route B, through LIVE Studio**: in OBS click **Start Virtual Camera**. Open LIVE Studio, **portrait (9:16)** frame, **Add source → Camera → OBS Virtual Camera**, stretch it to fill the frame. The virtual camera carries only the picture; sound goes through the computer speakers, so enable computer audio capture in Studio's audio settings.
+5. **Route C, with a stream key**: OBS → **Settings → Stream → Custom**, paste the server URL and stream key from TikTok, then **Start Streaming**. Studio is not needed and sound goes straight through OBS (step 3 is optional).
+6. Studio's **widgets** are not needed; the temple already has them.
 
-Các lần sau chỉ cần: chạy `run.bat` → mở OBS (cách B bấm lại **Start Virtual Camera**) → mở Studio. Chùa trắng hoặc đứng hình thì chuột phải nguồn Browser → **Refresh**.
+Next time: run `run.bat` → open OBS (route B: click **Start Virtual Camera** again) → open Studio. If the temple is white or frozen, right-click the Browser source → **Refresh**.
 
-## 3. Nối quà, tim, chat vào chùa
+## 3. Connect gifts, likes and chat
 
-### Cách A: qua TikFinity (khuyên dùng)
+### Option A: through TikFinity (recommended)
 
-1. Mở **TikFinity Desktop**, đăng nhập bằng **chính tài khoản TikTok của kênh**.
-2. Nếu trong cài đặt TikFinity có mục WebSocket / API: bật lên, cổng **21213** (thường bật sẵn).
-3. Lên sóng trước (Studio bấm **Phát trực tiếp**, cách C thì OBS bấm **Start Streaming**). TikFinity sẽ tự bắt được buổi live (hiện trạng thái đã kết nối).
-4. Ở bảng điều khiển chùa: chọn **TikFinity Desktop**, gõ tên kênh (để hiển thị), bấm **Kết nối**. Chấm trạng thái chuyển xanh là xong.
+1. Open **TikFinity Desktop** and sign in with **the channel's own TikTok account**.
+2. If TikFinity's settings have a WebSocket / API option, turn it on with port **21213** (usually on already).
+3. Go live first (Studio: **Go LIVE**; route C: OBS **Start Streaming**). TikFinity picks up the live by itself and shows it as connected.
+4. In the temple control panel: choose **TikFinity Desktop**, type the channel name (for display), click **Kết nối** (*Connect*). When the status dot turns green, you are done.
 
-### Cách B: kết nối trực tiếp (không cần TikFinity)
+### Option B: direct connection (no TikFinity)
 
-1. Lên sóng trước (Studio hoặc OBS).
-2. Ở bảng điều khiển: chọn **Trực tiếp**, gõ **tên kênh** (phần sau chữ @, không gõ @), bấm **Kết nối**.
+1. Go live first (Studio or OBS).
+2. In the control panel: choose **Trực tiếp** (*Direct*), type the **channel name** (the part after @, without the @), click **Kết nối** (*Connect*).
 
-Mẹo: chọn **Tự động** và gõ sẵn tên kênh. Có TikFinity thì kit dùng TikFinity, không có thì tự chuyển sang trực tiếp. Mất kết nối thì kit tự thử lại.
+Tip: choose **Tự động** (*Auto*) and enter the channel name. The kit uses TikFinity when it is running and falls back to the direct connection otherwise. If the connection drops, the kit retries on its own.
 
-## 4. Thử trước khi lên sóng (khi chưa live)
+## 4. Test before going live
 
-- Bảng điều khiển, tab **Thử nghiệm**: bấm các nút **hiệu ứng** (dâng hương, lễ bái, dâng sen, đại lễ), các nút quà, **Đọc thử** giọng. Thả 60 người để xem cảnh đông, thả 400 người để thử máy có chịu nổi.
-- **Tự chạy** cho người ảo vào chùa liên tục. Nhớ bấm **Tắt** và bấm **Phiên mới** (tab **Thống kê**) trước khi lên sóng thật.
-- Tab **Hướng dẫn** trong bảng điều khiển tóm tắt các bước lên live.
-- Muốn xem vùng TikTok che: mở `http://localhost:3939/overlay?safe`.
+- Control panel, **Thử nghiệm** (*Test*) tab: click the **effect** buttons (incense, bowing, lotus offering, grand ceremony), the gift buttons and **Đọc thử** (*Test voice*). Drop 60 people to see a busy scene, 400 to check the computer copes.
+- **Tự chạy** (*Auto run*) sends virtual visitors into the temple continuously. Remember to click **Tắt** (*Off*) and **Phiên mới** (*New session*, in the **Thống kê** / *Stats* tab) before the real live.
+- The **Hướng dẫn** (*Guide*) tab in the control panel summarises the go-live steps.
+- To see the areas TikTok covers, open `http://localhost:3939/overlay?safe`.
 
-## 5. Lên sóng
+## 5. Go live
 
-1. Studio: đặt tiêu đề (ví dụ *"Chùa online · gõ «xin xăm» để gieo quẻ"*), chủ đề, rồi **Phát trực tiếp**. Cách C: đặt tiêu đề trên TikTok rồi OBS bấm **Start Streaming**.
-2. Kết nối ở bước 3.
-3. Theo dõi bảng điều khiển: dòng "sự kiện gần nhất" chạy là quà, tim, chat đang vào.
+1. Studio: set a title (for example *"Chùa online · gõ «xin xăm» để gieo quẻ"*, "Online temple · type «xin xăm» to draw a fortune"), a topic, then **Go LIVE**. Route C: set the title on TikTok, then click **Start Streaming** in OBS.
+2. Connect as in step 3.
+3. Watch the control panel: when the "latest events" line is moving, gifts, likes and chat are coming in.
 
-## Lỗi hay gặp
+## Common problems
 
-| Hiện tượng | Làm gì |
+| Symptom | Fix |
 |---|---|
-| Studio báo "Không có quyền truy cập", không bấm phát được | Tài khoản chưa có quyền LIVE Studio, phải đủ điều kiện của TikTok trước |
-| Bảng điều khiển báo "Không thấy TikFinity ở ws://127.0.0.1:21213" | TikFinity chưa mở, chưa đăng nhập, hoặc chưa bật WebSocket. Hoặc chuyển sang **Trực tiếp** |
-| Kết nối trực tiếp báo lỗi | Kênh chưa lên sóng, hoặc gõ sai tên kênh (không gõ @) |
-| Overlay im lặng | Bấm vào overlay một lần ("Chạm để nghe chuông mõ"), kiểm tra âm lượng trong phần cài đặt theme |
-| Giọng đọc lúc có lúc không | Dịch vụ đọc của Microsoft chập chờn; câu lỗi bị bỏ qua, live vẫn chạy |
-| Lỡ tắt cửa sổ đen | Chạy lại `run.bat`, rồi bấm Kết nối lại. OBS: chuột phải nguồn Browser → Refresh |
-| Cách B: Studio có hình chùa nhưng không có tiếng | Camera ảo không mang tiếng: nguồn Browser trong OBS chọn **Monitor and Output**, bật thu âm thanh máy tính trong Studio |
-| Cách B: Studio không thấy "OBS Virtual Camera" | Bật **Start Virtual Camera** trong OBS trước rồi mới mở Studio, hoặc mở lại Studio |
-| OBS: chùa trắng, không có hình | Chưa chạy `run.bat`, hoặc gõ sai URL. Chạy `run.bat` rồi Refresh nguồn |
+| Studio says "Không có quyền truy cập" (*No access*) and cannot go live | The account has no LIVE Studio access yet; it must meet TikTok's requirements first (see the unlock session) |
+| Control panel says it cannot find TikFinity at ws://127.0.0.1:21213 | TikFinity is not open, not signed in, or WebSocket is off. Or switch to **Trực tiếp** (*Direct*) |
+| Direct connection reports an error | The channel is not live yet, or the channel name is wrong (do not type @) |
+| Overlay is silent | Click the overlay once ("Chạm để nghe chuông mõ", *Tap to hear the bells*), and check the volume in the theme settings |
+| Voice comes and goes | Microsoft's speech service is unstable; failed lines are skipped and the live keeps running |
+| Closed the black window by mistake | Run `run.bat` again, then click Connect again. OBS: right-click the Browser source → Refresh |
+| Route B: Studio shows the temple but no sound | The virtual camera carries no sound: set the OBS Browser source to **Monitor and Output** and enable computer audio capture in Studio |
+| Route B: Studio does not list "OBS Virtual Camera" | Click **Start Virtual Camera** in OBS before opening Studio, or reopen Studio |
+| OBS: the temple is white, no picture | `run.bat` is not running or the URL is wrong. Run `run.bat`, then Refresh the source |

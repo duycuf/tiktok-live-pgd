@@ -5,3 +5,8 @@ node_modules/
 data/
 .DS_Store
 themes/*/assets/raw/
+
+# asset-generation prompts and reference sketches (kept locally)
+themes/chua/docs/
+themes/chua/tools/
+themes/chua/assets/ref/

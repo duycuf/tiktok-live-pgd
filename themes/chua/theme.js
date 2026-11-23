@@ -1,17 +1,17 @@
-// Chùa ảo: giao diện riêng (thay Kit.hud của kit), quẻ xăm, đèn nguyện, hào quang theo danh hiệu.
-// Cảnh, hành động, luật nằm trong theme.json + scene.json; file này chỉ lo phần nhìn trên cùng.
+// Online temple: custom HUD (replaces the kit's Kit.hud), fortune draws, wish lanterns, auras by title.
+// Scene, actions and rules live in theme.json + scene.json; this file only draws the top layer.
 //
-// Bố cục theo vùng an toàn khi live TikTok (Kit.safe, mở overlay với ?safe để xem):
-//   trên cùng 240px để trống cho tên kênh; các bảng hẹp, nằm ngay trong vùng an toàn hai bên (hud.edge) để giữa thoáng cho tượng Phật;
-//   nửa trái phía dưới là khung bình luận nên khay lễ phẩm nằm cột phải; thẻ hiện lên chỉ chiếm dải giữa.
+// Layout follows the TikTok LIVE safe zones (Kit.safe; open the overlay with ?safe to see them):
+//   the top 240px stays clear for the channel name; narrow panels sit just inside the side safe zones (hud.edge) to keep the centre clear for the Buddha statue;
+//   the lower-left half is the comment area, so the offerings tray sits in the right column; pop-up cards use only the middle strip.
 //
-// Chữ và vị trí đổi trong theme.json "hud":
-//   "plaque": { "text": "...", "sub": "..." }   biển tên chùa (góc trên trái; góc trên phải là số liệu)
-//   "guide":  { "title": "..." }                thẻ hướng dẫn bên trái (tự sinh từ luật chat)
-//   "board":  { "title": "...", "size": 3 }     liễn phải: bảng vàng
-//   "tray":   { "title": "..." }                mục lễ phẩm cuối thẻ hướng dẫn (lấy từ actions có "card", tên hiện là "offering")
+// Text and positions are set in theme.json "hud":
+//   "plaque": { "text": "...", "sub": "..." }   temple name plaque (top left; stats are top right)
+//   "guide":  { "title": "..." }                guide card on the left (generated from the chat rules)
+//   "board":  { "title": "...", "size": 3 }     right scroll: leaderboard
+//   "tray":   { "title": "..." }                offerings list at the end of the guide card (from actions with "card"; the shown name is "offering")
 //   "giftCard": { "verb": "kính dâng", "unit": "công đức", "top": 1120 }
-//   "drawTop": 770, "periodicTop": 800, "toastTop": 1010   vị trí thẻ quẻ, thời kinh, dòng chúc mừng (liễn tự xếp dưới biển tên / ô số liệu; "sideTop" để cố định)
+//   "drawTop": 770, "periodicTop": 800, "toastTop": 1010   positions of the fortune card, chanting banner and congratulation toast (side scrolls stack under the plaque / stats box; set "sideTop" to pin them)
 
 (function () {
   const K = window.Kit;
@@ -24,7 +24,7 @@
   let theme = {}, cfg = {}, root = null;
   const lastWords = new Map();
 
-  // Góc mây cuốn mạ vàng
+  // Gilded cloud-scroll corners
   const CORNER = `<svg viewBox="0 0 40 40"><path d="M3 37V14C3 8 8 3 14 3h23" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M9 37V18c0-5 4-9 9-9h19" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".7"/><circle cx="17" cy="17" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M17 13c5 0 6 6 2 7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>`;
   const corners = () => ['tl', 'tr', 'bl', 'br'].map((c) => `<i class="cn ${c}">${CORNER}</i>`).join('');
 
@@ -34,11 +34,11 @@
   .cx .cn svg { width:100%; height:100%; display:block; }
   .cx .cn.tl { left:4px; top:4px } .cx .cn.tr { right:4px; top:4px; transform:scaleX(-1) } .cx .cn.bl { left:4px; bottom:4px; transform:scaleY(-1) } .cx .cn.br { right:4px; bottom:4px; transform:scale(-1,-1) }
   .lac { position:absolute; background:linear-gradient(160deg, #94241a 0%, var(--lac) 45%, var(--lac2) 100%); border:3px solid var(--gold); box-shadow: inset 0 0 0 4px var(--lac2), inset 0 0 0 6px rgba(232,192,106,.75), 0 8px 24px rgba(0,0,0,.45); }
-  /* khối nhìn xuyên: thấy được người và cảnh phía sau */
+  /* see-through panels: people and scene stay visible behind */
   .glass { position:absolute; box-sizing:border-box; background:linear-gradient(170deg, rgba(122,24,16,.5), rgba(58,8,4,.34)); border:2px solid rgba(232,192,106,.8); box-shadow: inset 0 0 0 4px rgba(58,8,4,.3), inset 0 0 0 5px rgba(232,192,106,.3); text-shadow:0 2px 4px rgba(0,0,0,.9), 0 0 2px rgba(0,0,0,.9); }
   .gold-text { background:linear-gradient(180deg, var(--gold2) 10%, var(--gold) 55%, #b5832f 100%); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:none; filter:drop-shadow(0 2px 2px rgba(0,0,0,.85)); }
 
-  /* hoành phi */
+  /* horizontal plaque */
   .cx-plaque { box-sizing:border-box; padding:12px 10px 11px; text-align:center; border-radius:6px; }
   .cx-plaque h1 { margin:0; font:900 32px/1.1 'Playfair Display', serif; letter-spacing:2px; white-space:nowrap; }
   .cx-plaque p { margin:5px 0 0; font:italic 600 20px/1.25 'Lora', serif; color:#f6dfae; }
@@ -46,7 +46,7 @@
   .cx-stats > div:not(.cx-goal) { display:flex; align-items:baseline; gap:10px; font:italic 600 21px 'Lora', serif; color:#f6e2bb; white-space:nowrap; }
   .cx-stats b { min-width:64px; text-align:right; font:800 27px 'Playfair Display', serif; font-style:normal; color:var(--gold2); }
 
-  /* liễn dọc hai bên */
+  /* vertical scrolls on both sides */
   .cx-scroll { padding:34px 16px 28px; border-radius:4px; }
   .cx-scroll .rod { position:absolute; left:-10px; right:-10px; height:12px; border-radius:6px; background:linear-gradient(180deg, #6b3b1c, #2e160a); box-shadow:0 2px 6px rgba(0,0,0,.4); }
   .cx-scroll .rod::before, .cx-scroll .rod::after { content:''; position:absolute; top:-3px; width:14px; height:18px; border-radius:4px; background:linear-gradient(180deg, var(--gold2), #a8742a); }
@@ -69,7 +69,7 @@
   .cx-board li.empty { opacity:.55 }
   .cx-board li.empty .nm { font:italic 600 20px 'Lora', serif; }
 
-  /* lễ phẩm: cuối thẻ hướng dẫn bên trái (gọn như cách chanh-dien chỉ dùng 2 thẻ hai bên) */
+  /* offerings: at the end of the left guide card (compact, like chanh-dien's two side cards) */
   .cx-tiers { margin-top:14px; padding-top:10px; border-top:1px solid rgba(232,192,106,.5); display:grid; gap:7px; }
   .cx-tiers h4 { margin:0 0 2px; text-align:center; font:800 22px 'Playfair Display', serif; letter-spacing:4px; color:var(--gold2); }
   .cx-item { display:grid; grid-template-columns:34px 1fr auto; align-items:center; gap:7px; }
@@ -82,7 +82,7 @@
   .cx-item.hit .md { box-shadow:0 0 0 2px var(--gold2), 0 0 24px 8px rgba(255,210,120,.85); }
   @keyframes cxHit { 0% { transform:scale(1.08) } 100% { transform:none } }
 
-  /* nén nhang: thanh mục tiêu, cuối ô số liệu */
+  /* incense stick: goal bar at the end of the stats box */
   .cx-goal { margin-top:6px; padding-top:10px; border-top:1px solid rgba(232,192,106,.45); text-align:center; }
   .cx-goal .lb { line-height:1.25; font:italic 600 20px 'Lora', serif; color:#f6dfae; text-shadow:0 2px 4px #000, 0 0 2px #000; margin-bottom:6px; }
   .cx-goal .lb b { font-style:normal; color:var(--gold2); }
@@ -91,7 +91,7 @@
   .cx-goal .ember { position:absolute; top:50%; width:16px; height:16px; margin:-8px 0 0 -8px; border-radius:50%; background:radial-gradient(circle, #fff3c0, #ff8a2a 45%, rgba(255,90,20,0) 72%); left:0; transition:left .8s; animation:cxEmber 1.6s ease-in-out infinite; }
   @keyframes cxEmber { 50% { transform:scale(1.35); opacity:.8 } }
 
-  /* tờ sớ khi dâng lễ: một dải gọn */
+  /* prayer slip shown on a gift: one compact strip */
   .cx-so { position:absolute; box-sizing:border-box; padding:12px 100px 12px 26px; color:var(--ink); background: repeating-linear-gradient(95deg, rgba(120,80,30,.05) 0 2px, transparent 2px 7px), linear-gradient(180deg, rgba(246,234,208,.95), rgba(230,210,166,.93)); border-left:8px solid var(--lac); box-shadow:0 10px 24px rgba(0,0,0,.45); clip-path:inset(0 50% 0 50%); opacity:0; transition:clip-path .55s cubic-bezier(.2,.8,.2,1), opacity .3s; }
   .cx-so.show { clip-path:inset(-60px -60px -60px -60px); opacity:1; }
   .cx-so .who { font:italic 800 42px/1.1 'Playfair Display', serif; color:var(--lac); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
@@ -103,7 +103,7 @@
   .cx-so.big { box-shadow:0 0 0 3px var(--gold), 0 0 50px rgba(255,200,90,.85); }
   .cx-so.big .seal { background:#b3140e; color:#fff3d0; }
 
-  /* thời kinh */
+  /* chanting session */
   .cx-kinh { position:absolute; padding:26px 32px 22px; text-align:center; color:var(--ink); background:linear-gradient(180deg, rgba(246,234,208,.95), rgba(227,205,157,.93)); box-shadow:0 12px 28px rgba(0,0,0,.45); opacity:0; transform:scaleY(.2); transform-origin:top; transition:opacity .4s, transform .6s cubic-bezier(.2,.8,.2,1); }
   .cx-kinh.show { opacity:1; transform:none; }
   .cx-kinh .rod { position:absolute; left:-12px; right:-12px; height:14px; border-radius:7px; background:linear-gradient(180deg, #6b3b1c, #2e160a); }
@@ -111,7 +111,7 @@
   .cx-kinh h4 { margin:0 0 8px; font:800 24px 'Playfair Display', serif; letter-spacing:6px; color:var(--lac); }
   .cx-kinh p { margin:0; font:italic 28px/1.45 'Lora', serif; }
 
-  /* quẻ xăm: tờ giấy dó khung sơn son, mở từ giữa ra như cuộn thư; ống xăm lắc ở cột trái */
+  /* fortune draw: a paper slip in a lacquered frame that unrolls from the centre like a scroll; the fortune cylinder shakes in the left column */
   .cx-xam { position:absolute; height:370px; opacity:0; transition:opacity .4s; }
   .cx-xam.show { opacity:1; }
   .cx-xam .slip { position:absolute; inset:0; box-sizing:border-box; padding:22px 30px 18px 168px; color:var(--ink); border-radius:6px;
@@ -146,7 +146,7 @@
   .cx-xam .one span { margin-top:22px; font:900 14px/1 'Playfair Display', serif; color:var(--ink); writing-mode:vertical-rl; }
   .cx-xam.up .one { opacity:1; transform:translateY(-60px); }
 
-  /* đèn nguyện */
+  /* wish lanterns */
   .cx-den { position:absolute; width:240px; margin-left:-120px; text-align:center; animation:cxRise 8s ease-in forwards; }
   .cx-den .lamp { position:relative; width:70px; height:56px; margin:0 auto; }
   .cx-den .lamp img { width:70px; height:56px; object-fit:contain; filter:drop-shadow(0 0 14px rgba(255,190,90,.95)); }
@@ -164,15 +164,15 @@
 
   const TONES = { 'thượng cát': '#b3140e', 'trung cát': '#a8741a', 'tiểu cát': '#2f7a5a', 'bình an': '#55657f' };
 
-  // ---------- Dựng ----------
+  // ---------- Build ----------
   function init(o) {
     theme = o.theme; cfg = theme.hud || {};
     root = document.createElement('div');
     root.className = 'cx';
     o.stage.appendChild(root);
     const st = document.createElement('style'); st.textContent = STYLE; document.head.appendChild(st);
-    const L = cfg.edge ?? Z.side - 4, colW = 236;       // lề trong vùng an toàn (máy màn dài cắt mỗi bên ~100px), bề rộng các bảng
-    const mid = `left:${L + 10}px;right:${L + 10}px`; // dải giữa cho thẻ hiện lên
+    const L = cfg.edge ?? Z.side - 4, colW = 236;       // inset inside the safe zone (tall phones crop ~100px per side), panel width
+    const mid = `left:${L + 10}px;right:${L + 10}px`; // middle strip for pop-up cards
     const top = cfg.safeTop ?? Z.top + 4, side = cfg.sideTop ?? 400;
     const plaque = cfg.plaque || cfg.title || {};
     const unit = esc(cfg.giftCard?.unit || 'công đức');
@@ -200,7 +200,7 @@
     document.fonts?.ready.then(layoutSides);
   }
 
-  // Thẻ hướng dẫn xếp ngay dưới biển tên (trái), bảng vàng dưới ô số liệu (phải): chữ to nhỏ thế nào cũng không đè nhau
+  // The guide card stacks under the plaque (left) and the leaderboard under the stats box (right), so they never overlap whatever the text size
   function layoutSides() {
     if (!root) return;
     const below = (el, gap = 30) => `${el.offsetTop + el.offsetHeight + gap}px`;
@@ -211,7 +211,7 @@
     }
   }
 
-  // ---------- Số liệu, bảng vàng, nén nhang ----------
+  // ---------- Stats, leaderboard, incense goal ----------
   function state(s, peopleCount) {
     if (!root) return;
     const set = (k, v) => { const el = $(`[data-c="${k}"]`, root); if (el) el.textContent = v; };
@@ -234,7 +234,7 @@
     }
   }
 
-  // ---------- Liễn trái: tự sinh từ luật chat ----------
+  // ---------- Left scroll: generated from the chat rules ----------
   function guide(data, chars) {
     const ul = root && $('.cx-guide ul', root);
     if (!ul) return;
@@ -251,7 +251,7 @@
     ul.innerHTML = rows.slice(0, cfg.guide?.max || 5).map(([k, d]) => `<li><span class="k">${esc(k)}</span><span class="d">${esc(d)}</span></li>`).join('');
   }
 
-  // ---------- Tờ sớ khi dâng lễ ----------
+  // ---------- Prayer slip on a gift ----------
   const soQ = [];
   let soBusy = false;
   function giftCard(ev) {
@@ -276,12 +276,12 @@
     setTimeout(() => { el.classList.remove('show'); setTimeout(nextSo, 500); }, soQ.length > 4 ? 1500 : ev.big ? 5000 : 3200);
   }
 
-  function ticker() {} // không còn sổ lễ: tờ sớ đã báo người tặng
+  function ticker() {} // no gift log any more: the prayer slip already names the giver
 
 
-  // ---------- Quẻ xăm ----------
-  // Giọng đọc quẻ thường tới sau vài giây: thẻ giữ trên màn hình tới khi đọc xong (tối đa 35 giây)
-  const quoteVoice = new Map(); // id người xin quẻ -> 'on' | 'done'
+  // ---------- Fortune draw ----------
+  // The fortune voice usually starts a few seconds later: keep the card on screen until it finishes (35 seconds at most)
+  const quoteVoice = new Map(); // id of the viewer who drew -> 'on' | 'done'
   K.on('speak', (e) => { if (e.about === 'draw' && e.for) quoteVoice.set(e.for, 'on'); });
   K.on('speakEnd', (e) => { if (e.about === 'draw' && e.for) quoteVoice.set(e.for, 'done'); });
   async function waitQuoteVoice(uid) {
@@ -290,7 +290,7 @@
     while (Date.now() - t0 < 35000) {
       const st = quoteVoice.get(uid);
       if (st === 'done') { await later(1200); break; }
-      if (!st && Date.now() - t0 > 14000) break; // không có giọng đọc (tắt giọng / lỗi): để thẻ khoảng 14 giây
+      if (!st && Date.now() - t0 > 14000) break; // no voice (voice off or failed): keep the card about 14 seconds
       await later(250);
     }
     quoteVoice.delete(uid);
@@ -331,7 +331,7 @@
     nextXam();
   }
 
-  // ---------- Đèn nguyện (hành động "lantern") ----------
+  // ---------- Wish lanterns (the "lantern" action) ----------
   function lantern(person, ev) {
     if (!root || !person) return;
     if (root.querySelectorAll('.cx-den').length >= 6) return;
@@ -341,7 +341,7 @@
     el.className = 'cx-den';
     el.style.left = `${Math.max(Z.side + 130, Math.min(1080 - Z.side - 130, h.x))}px`;
     el.style.top = `${h.y - 70}px`;
-    const rise = -(h.y - 70 - (cfg.lanternTop ?? 720)); // bay tới ngang bàn thờ rồi tan, không che tượng
+    const rise = -(h.y - 70 - (cfg.lanternTop ?? 720)); // rise to altar height, then fade, never covering the statue
     el.style.setProperty('--rise', `${rise}px`);
     el.style.setProperty('--mid', `${rise * 0.5}px`);
     el.innerHTML = `<div class="lamp"><img src="assets/cdo/fx_lotus.png"></div><div class="wish">${esc(wish)}</div><div class="by">${esc(person.name || '')}</div>`;
@@ -356,7 +356,7 @@
     clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), ms);
   }
 
-  // nhịp mõ đều (tiếng mõ thật, khoảng 52 nhịp/phút) trong lúc băng thời kinh hiện
+  // steady wooden-fish beat (real recording, about 52 beats per minute) while the chanting banner is shown
   let moTimer = null;
   function moBeat(ms) {
     clearInterval(moTimer);
@@ -383,7 +383,7 @@
   K.hud = { init, giftCard, ticker, state, guide, toast, periodic, draw, remember, reset };
   K.action('lantern', (person, ev) => lantern(person, ev));
 
-  // ---------- Hào quang theo danh hiệu (theme.json "titles"[].aura) ----------
+  // ---------- Auras by title (theme.json "titles"[].aura) ----------
   let sparkAt = 0;
   K.on('frame', (t) => {
     const titles = theme.titles || [];
